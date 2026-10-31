@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette from GUIDE.md appendix. Tailwind colour tokens point at these variables. */
+:root {
+  --bg: #f3f5f8; --surface: #ffffff; --ink: #1b2130; --muted: #5d6677; --rule: #d7dce4; --soft: #e9edf2;
+  --rh: #c4841a; --rh-ink: #ffffff; --lh: #1e8c82; --lh-ink: #ffffff; --root: #b23a48;
+  --wkey: #ffffff; --wkey-line: #8e96a5; --bkey: #262b36; --bkey-text: #e8ecf2;
+  --staff: #1b2130; --note: #1b2130; --tip: #fbf3e3; --tip-edge: #c4841a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #141924; --surface: #1b2230; --ink: #e8ecf2; --muted: #9aa4b5; --rule: #2d3543; --soft: #232b3a;
+    --rh: #e4a83a; --rh-ink: #1b1100; --lh: #3fbfb2; --lh-ink: #00211e; --root: #e26b78;
+    --wkey: #eef1f5; --wkey-line: #6b7382; --bkey: #0b0e14; --bkey-text: #c9d0db;
+    --staff: #e8ecf2; --note: #e8ecf2; --tip: #2a2418; --tip-edge: #e4a83a;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #141924; --surface: #1b2230; --ink: #e8ecf2; --muted: #9aa4b5; --rule: #2d3543; --soft: #232b3a;
+  --rh: #e4a83a; --rh-ink: #1b1100; --lh: #3fbfb2; --lh-ink: #00211e; --root: #e26b78;
+  --wkey: #eef1f5; --wkey-line: #6b7382; --bkey: #0b0e14; --bkey-text: #c9d0db;
+  --staff: #e8ecf2; --note: #e8ecf2; --tip: #2a2418; --tip-edge: #e4a83a;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-bg text-ink font-sans; font-size: 17px; line-height: 1.6; }
+  h1, h2, h3 { @apply font-serif font-normal; line-height: 1.15; text-wrap: balance; }
+  :focus-visible { outline: 2px solid var(--rh); outline-offset: 2px; }
+}
+
+@layer components {
+  /* Figure card, as in the guide. */
+  .fig { @apply bg-surface border border-rule rounded-md; padding: 16px 16px 12px; overflow-x: auto; margin: 0; }
+  .fig svg { display: block; max-width: 100%; height: auto; }
+  .fig .cap { @apply text-muted; font-size: 14px; margin: 10px 0 0; line-height: 1.45; }
+  .fig .cap b { @apply text-ink font-semibold; }
+  .eyebrow { @apply font-mono uppercase text-muted; font-size: 11px; letter-spacing: 0.12em; }
+}
